@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app>
+
+<head>
+  <title>Pokedex</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col m6 offset-m3" style="height: 600px;">
+<form class="" method="POST" action="identify" enctype="multipart/form-data">
+  <div class="file-field input-field">
+    <div class="btn">
+      <span>File</span>
+      <input type="file" name="image" accept="image/x-png,image/jpeg">
+    </div>
+    <div class="file-path-wrapper">
+      <input class="file-path validate" placeholder="Upload Pokemon image" type="text">
+    </div>
+  </div>
+  <button class="btn waves-effect waves-light" type="submit">
+    Submit <i class="material-icons right">send</i>
+  </button>
+</form>
+</div>
+</div>
+
+</body>
+
+</html>
