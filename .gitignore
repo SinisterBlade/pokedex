@@ -1,1 +1,4 @@
 node_modules
+vrconfig.json
+config.json
+images/*.*

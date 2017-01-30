@@ -12,34 +12,31 @@ app.use(fileUpload())
 var appEnv = cfenv.getAppEnv();
 
 app.post('/identify', (request, response) => {
-  if (!request.files) {
-    response.send('No file was uploaded!')
-  } else {
-    var image = request.files.image
-    var filepath = __dirname + '/images/' + image.name
-    image.mv(filepath, (err) => {
-      if (err) {
-        response.sendStatus(500)
-      } else {
-        identifyPokemon(filepath)
-          .then((pokemon) => getPokemonInfo(pokemon))
-          .then((info) => getFlavorText(info.name, 'alpha-sapphire', info))
-          .then((info) => response.send(JSON.stringify(info, null, 4)))
-          .catch((err) => {
-            response.send(err)
-          })
-      }
-    })
-  }
+  var image = request.files.image
+  var filepath = __dirname + '/images/' + image.name
+  image.mv(filepath, (err) => {
+    if (err) {
+      response.sendStatus(500)
+    } else {
+      identifyPokemon(filepath)
+        .then((pokemon) => getPokemonInfo(pokemon))
+        .then((info) => getFlavorText(info.name, 'alpha-sapphire', info))
+        .then((info) => response.send(JSON.stringify(info, null, 4)))
+        .catch((err) => {
+          response.send(err)
+        })
+    }
+  })
 })
 
 function identifyPokemon(image) {
   var formData = {
     images_file: fs.createReadStream(image),
-    parameters: fs.createReadStream(__dirname + '/vrconfig.json'),
+    parameters: fs.createReadStream(__dirname + '/config/vrconfig.json'),
     name: 'pokemon'
   }
-  var uri = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=a6db7158a39f41250b12dfff5a46dc734a57b29a&version=2016-05-20'
+  var api_key = require(__dirname + '/config/config.json').api_key
+  var uri = 'https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key=' + api_key + '&version=2016-05-20'
 
   return new Promise((resolve, reject) => {
     request.post({ url: uri, formData: formData }, (err, httpResponse, body) => {
