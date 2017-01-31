@@ -58,7 +58,14 @@ function setInfo(data) {
   data.abilities.forEach((ability) => {
     toDisplay += removeHyphens(ability) + '<br>'
   })
-  toDisplay += '<br>' + data.flavor
+  toDisplay += '<br>' + data.flavor + '<br>'
+
+  toDisplay += '<br> Stats:' + '<br>'
+  data.stats.forEach((obj) => {
+    for (key in obj) {
+      toDisplay += removeHyphens(key) + ':' + obj[key] + '<br>'
+    }
+  })
 
   toDisplay += '</div>'
   toDisplay = toDisplay.toUpperCase()

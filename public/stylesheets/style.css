@@ -520,6 +520,34 @@
   overflow-y: auto;
 }
 
+#info-screen::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+	background-color: #30DA0C;
+  background: linear-gradient(#ACFB76, #30DA0C);
+  box-shadow: -5 0 20px #137604 inset;
+	border-radius: 10px;
+}
+
+#info-screen::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #30DA0C;
+  background: linear-gradient(#ACFB76, #30DA0C);
+}
+
+#info-screen::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: #30DA0C;
+	background-image: -webkit-gradient(linear,
+									   40% 0%,
+									   75% 84%,
+									   from(#4D9C41),
+									   to(#19911D),
+									   color-stop(.6,#54DE5D))
+}
+
 #info-screen p {
   font-size: 1.2em;
 }
