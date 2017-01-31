@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Pokedex</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="row">
+    <div class="col m6 offset-m3">
+      <form class="" method="POST" name="fileinfo" enctype="multipart/form-data">
+        <div class="file-field input-field">
+          <div class="btn">
+            <span>File</span>
+            <input type="file" name="image" accept="image/x-png,image/jpeg" required>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" placeholder="Upload Pokemon image" type="text">
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit">
+          Submit <i class="material-icons right">send</i>
+        </button>
+      </form>
+    </div>
+  </div>
+  <script>
+    $(function() {
+      var form = document.forms.namedItem('fileinfo')
+      form.addEventListener('submit', function(ev) {
+        var data = new FormData(form)
+        var req = new XMLHttpRequest()
+        req.open('POST', 'identify', true)
+        req.onreadystatechange = function(ev) {
+          if (this.status == 200 && this.readyState == 4) {
+            console.log(this.responseText)
+          } else {
+            console.log('Error ' + this.status)
+          }
+        }
+        req.send(data)
+        ev.preventDefault()
+      }, false)
+    })
+  </script>
+</body>
+
+</html>
